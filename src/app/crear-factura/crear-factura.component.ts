@@ -17,9 +17,24 @@ export class CrearFacturaComponent implements OnInit {
     this.formFactura = new FormGroup({
       cliente: new FormControl('', [Validators.required, Validators.minLength(4)]),
       cif: new FormControl('', [ValidateCif]),
-      fecha: new FormControl((new Date()).toISOString().substring(0,10))
+      fecha: new FormControl((new Date()).toISOString().substring(0,10)),
+      baseImponible: new FormControl(0),
+      tipoIVA: new FormControl(0.21),
+      importeIVA: new FormControl(0),
+      totalFactura: new FormControl(0)
     })
     console.log(this.formFactura);
+    this.actualizarFactura();
+  }
+
+  actualizarFactura() {
+    this.formFactura.valueChanges
+                    .subscribe(objetoForm => {
+                      this.formFactura.get('importeIVA')
+                                      .patchValue(objetoForm.baseImponible * objetoForm.tipoIVA, {emitEvent: false})
+                      this.formFactura.get('totalFactura')
+                                      .patchValue(objetoForm.baseImponible + objetoForm.baseImponible * objetoForm.tipoIVA, {emitEvent: false})
+                    })
   }
 
 }

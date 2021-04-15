@@ -33,6 +33,27 @@
             <label>Fecha factura</label>
             <input type="date" formControlName="fecha">
         </div>
+        <div class="input-row">
+            <label>Base imponible</label>
+            <input type="number" formControlName="baseImponible">
+        </div>
+        <div class="input-row">
+            <label>% IVA</label>
+            <select formControlName="tipoIVA">
+                <option value=0>0 %</option>
+                <option value=0.04>4 %</option>
+                <option value=0.1>10 %</option>
+                <option value=0.21>21 %</option>
+            </select>
+        </div>
+        <div class="input-row">
+            <label>Importe IVA</label>
+            <input type="number" formControlName="importeIVA" readonly>
+        </div>
+        <div class="input-row">
+            <label>Total Factura</label>
+            <input type="number" formControlName="totalFactura" readonly>
+        </div>
     </form>
     <pre>{{formFactura.value | json}}</pre>
 </div>
