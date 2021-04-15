@@ -1,0 +1,30 @@
+<div class="card l">
+    <h1>Ejemplo de formulario driven/reactive</h1>
+    <hr>
+    <form [formGroup]="formFactura">
+        <div class="input-row">
+            <label>
+                Cliente
+                <span class="alert" *ngIf="formFactura.controls.cliente.dirty && formFactura.controls.cliente.errors && formFactura.controls.cliente.errors.required">
+                    * Campo obligatorio
+                </span>
+                <span class="alert" *ngIf="formFactura.controls.cliente.dirty && formFactura.controls.cliente.errors && formFactura.controls.cliente.errors.minlength">
+                    * El cliente debe tener más de 4 caracteres
+                </span>
+                <span class="valid" *ngIf="formFactura.controls.cliente.valid">
+                    &#10003;
+                </span>
+            </label>
+            <input type="text" formControlName="cliente">
+        </div>
+        <div class="input-row">
+            <label>CIF</label>
+            <input type="text" formControlName="cif">
+        </div>
+        <div class="input-row">
+            <label>Fecha factura</label>
+            <input type="date" formControlName="fecha">
+        </div>
+    </form>
+    <pre>{{formFactura.value | json}}</pre>
+</div>
